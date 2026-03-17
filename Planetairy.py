@@ -7,9 +7,17 @@ import astropy.coordinates as coords
 import datetime
 
 # --- Interface Setup ---
-st.title("Planetaire Zichtbaarheid 🪐")
-st.write("Bereken welke planeten zichtbaar zijn en bekijk hun pad voor de komende 14 dagen!")
+st.title("Planetary Sky Map 🪐")
 
+st.markdown("""
+Welcome! Ever wondered which bright dots in the night sky are actually planets? This tool helps you find out in seconds.
+*Pick a date and time to see if planets like Jupiter, Mars, or Venus are currently above the horizon.
+*Find your planet by comparing the constellations with your planet.
+*View a sky map showing how the visible planets move through the constellations over the next 14 days.
+*The observation point is currently set to the center of the Netherlands.
+
+Select a date and time below to see what's in the sky tonight!
+""")
 # Maak twee kolommen voor datum en tijd input
 col1, col2 = st.columns(2)
 with col1:
@@ -38,7 +46,7 @@ for p in planets:
         st.write(f"❌ {p} is niet zichtbaar.")
 
 # --- Grafiek Maken ---
-st.subheader("Hemelkaart (komende 14 dagen)")
+st.subheader("Hemelkaart voor de komende 14 dagen")
 
 dates = obs_date + np.arange(0, 14 + 1, 1)*u.day 
 
@@ -72,7 +80,7 @@ try:
                 ax.scatter(p_altaz.az.deg[-1], p_altaz.alt.deg[-1], label=p)
 
     ax.set_title(f'Planeten zichtbaar vanaf {obs_date}')
-    ax.set_xlabel('Azimut (graden)')
+    ax.set_xlabel('Azimut (graden) North = 0, east = 90, south = 180, west = 270')
     ax.set_ylabel('Altitude (graden)')
     ax.legend()
     
