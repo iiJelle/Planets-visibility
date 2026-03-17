@@ -21,9 +21,9 @@ Select a date and time below to see what's in the sky tonight!
 # Maak twee kolommen voor datum en tijd input
 col1, col2 = st.columns(2)
 with col1:
-    selected_date = st.date_input("Kies een datum", datetime.date.today())
+    selected_date = st.date_input("Choose a date", datetime.date.today())
 with col2:
-    selected_time = st.time_input("Kies een tijd", datetime.time(20, 0))
+    selected_time = st.time_input("Choose a time", datetime.time(0, 0))
 
 # Combineer input tot een formaat dat astropy begrijpt
 date_str = f"{selected_date} {selected_time}"
@@ -41,12 +41,12 @@ for p in planets:
     p_coord = coords.get_body(p, obs_date, location)
     altaz = p_coord.transform_to(altaz_coords)
     if altaz.alt > 0*u.deg:
-        st.write(f"✅ **{p}** is zichtbaar (Hoogte: {altaz.alt:.2f}, Azimut: {altaz.az:.2f}) in {coords.get_constellation(p_coord)}.")
+        st.write(f"✅ **{p}** is observable (Height: {altaz.alt:.2f}, Azimut: {altaz.az:.2f}) in {coords.get_constellation(p_coord)}.")
     else:
-        st.write(f"❌ {p} is niet zichtbaar.")
+        st.write(f"❌ {p} is not observable.")
 
 # --- Grafiek Maken ---
-st.subheader("Hemelkaart voor de komende 14 dagen")
+st.subheader("The celestial map for the upcoming 14 days")
 
 dates = obs_date + np.arange(0, 14 + 1, 1)*u.day 
 
