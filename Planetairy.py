@@ -21,9 +21,9 @@ Select a date and time below to see what's in the sky tonight!
 # Maak twee kolommen voor datum en tijd input
 col1, col2 = st.columns(2)
 with col1:
-    selected_date = st.date_input("Choose a date", datetime.date.today())
+    selected_date = st.date_input("Choose a date")
 with col2:
-    selected_time = st.time_input("Choose a time", datetime.time(0, 0))
+    selected_time = st.time_input("Choose a time")
 
 # Combineer input tot een formaat dat astropy begrijpt
 date_str = f"{selected_date} {selected_time}"
