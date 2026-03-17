@@ -28,7 +28,7 @@ with col2:
 # Combineer input tot een formaat dat astropy begrijpt
 date_str = f"{selected_date} {selected_time}"
 obs_date = time.Time(date_str)
-st.success(f"Tijdstip ingesteld op: {obs_date}")
+st.success(f"Date set to: {obs_date}")
 
 # --- Data & Berekeningen ---
 # Let op: de coördinaten wijzen naar Apeldoorn ;)
@@ -79,7 +79,7 @@ try:
             if horizon[-1]:
                 ax.scatter(p_altaz.az.deg[-1], p_altaz.alt.deg[-1], label=p)
 
-    ax.set_title(f'Planeten zichtbaar vanaf {obs_date}')
+    ax.set_title(f'Planets observable from date {obs_date}')
     ax.set_xlabel('Azimut (graden) North = 0, east = 90, south = 180, west = 270')
     ax.set_ylabel('Altitude (graden)')
     ax.legend()
